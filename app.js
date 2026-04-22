@@ -1,22 +1,29 @@
+// 初期化: DOMの読み込み完了後にデータを描画する。
 document.addEventListener("DOMContentLoaded", function () {
+    // data.js の COPY_ITEMS が壊れているケースを考慮し、安全に空配列へフォールバックする。
     renderItems(Array.isArray(COPY_ITEMS) ? COPY_ITEMS : []);
 });
 
+// 画面全体の一覧を描画する。
 function renderItems(items) {
     var app = document.getElementById("app");
 
+    // 描画先がない場合は何もしない。
     if (!app) {
         return;
     }
 
+    // 再描画に備えて既存内容をクリアする。
     app.innerHTML = "";
 
+    // カテゴリ単位にまとめて、見出し + アイテムの順で表示する。
     var groupedItems = groupByCategory(items);
     var categories = Object.keys(groupedItems);
 
     for (var i = 0; i < categories.length; i++) {
         var category = categories[i];
 
+        // カテゴリ見出しを作成。
         var heading = document.createElement("p");
         heading.className = "section_title";
         heading.textContent = category;
@@ -29,10 +36,12 @@ function renderItems(items) {
             var wrapper = document.createElement("div");
             wrapper.className = "copy_org";
 
+            // 項目名（例: ログインID）
             var title = document.createElement("span");
             title.className = "item_title";
             title.textContent = item.title;
 
+            // 値表示兼コピー用ボタン。
             var button = document.createElement("button");
             button.className = "copy_btn";
             button.type = "button";
@@ -50,12 +59,14 @@ function renderItems(items) {
     }
 }
 
+// 入力配列をカテゴリ名ごとにグルーピングする。
 function groupByCategory(items) {
     var grouped = {};
 
     for (var i = 0; i < items.length; i++) {
         var item = items[i];
 
+        // データ形式が不正な要素は読み飛ばす。
         if (!isValidItem(item)) {
             continue;
         }
@@ -70,6 +81,7 @@ function groupByCategory(items) {
     return grouped;
 }
 
+// 描画に必要な最小プロパティを持つか判定する。
 function isValidItem(item) {
     if (!item || typeof item !== "object") {
         return false;
@@ -83,15 +95,18 @@ function isValidItem(item) {
     );
 }
 
+// クリップボードへ文字列をコピーする。
 function copyToClipboard(text) {
     var normalizedText = typeof text === "string" ? text : "";
 
+    // HTTPSなどのセキュアコンテキストでは Clipboard API を優先利用する。
     if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(normalizedText)
             .then(function () {
                 showNotification("クリップボードに保存");
             })
             .catch(function () {
+                // 権限エラー等では従来方式へフォールバックする。
                 fallbackCopy(normalizedText);
             })
             .finally(function () {
@@ -110,6 +125,7 @@ function copyToClipboard(text) {
     }, 900);
 }
 
+// 古いブラウザ向けのコピー処理（textarea + execCommand）。
 function fallbackCopy(text) {
     var textarea = document.createElement("textarea");
     textarea.value = text;
@@ -131,6 +147,7 @@ function fallbackCopy(text) {
     document.body.removeChild(textarea);
 }
 
+// 通知メッセージを表示する。
 function showNotification(message) {
     var notification = document.getElementById("notification");
 
@@ -142,6 +159,7 @@ function showNotification(message) {
     notification.style.opacity = "1";
 }
 
+// 通知メッセージを非表示にする。
 function hideNotification() {
     var notification = document.getElementById("notification");
 

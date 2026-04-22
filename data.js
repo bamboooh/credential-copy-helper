@@ -1,3 +1,5 @@
+// コピー対象データ定義。
+// category: セクション名 / title: 項目名 / label: 画面表示値 / value: 実際にコピーする値
 const COPY_ITEMS = [
     {
         category: "共通アカウント",

@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <!-- 文字コードと表示領域の基本設定 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ページタイトルとスタイル読み込み -->
     <title>資格情報コピー支援ツール</title>
     <link rel="stylesheet" href="copy_btn.css">
 </head>
 <body>
+    <!-- 画面全体コンテナ -->
     <div class="page">
         <header class="page_header">
             <h1 class="page_title">資格情報コピー支援ツール</h1>
@@ -15,13 +19,16 @@
             </p>
         </header>
 
+        <!-- JavaScript が一覧を動的描画する領域 -->
         <main class="tool_card">
             <div id="app"></div>
         </main>
     </div>
 
+    <!-- コピー完了/失敗を通知するトースト領域 -->
     <div id="notification" class="notification" role="status" aria-live="polite" aria-atomic="true"></div>
 
+    <!-- データ定義を先に読み込み、その後で描画ロジックを読み込む -->
     <script src="data.js"></script>
     <script src="app.js"></script>
 </body>
