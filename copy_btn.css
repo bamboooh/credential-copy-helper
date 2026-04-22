@@ -1,3 +1,4 @@
+/* 全体の基本配色とフォント設定 */
 html, body {
     margin: 0;
     padding: 0;
@@ -11,10 +12,12 @@ html, body {
         sans-serif;
 }
 
+/* 画面外側の余白 */
 body {
     padding: 32px 20px;
 }
 
+/* コンテンツの最大幅を制御し中央寄せ */
 .page {
     max-width: 980px;
     margin: 0 auto;
@@ -24,6 +27,7 @@ body {
     margin-bottom: 20px;
 }
 
+/* ページ見出し */
 .page_title {
     margin: 0 0 8px 0;
     font-size: 1.9rem;
@@ -32,6 +36,7 @@ body {
     letter-spacing: 0.02em;
 }
 
+/* サブタイトル説明文 */
 .page_subtitle {
     margin: 0;
     color: #475569;
@@ -39,6 +44,7 @@ body {
     line-height: 1.6;
 }
 
+/* メインカード（一覧領域） */
 .tool_card {
     background: #ffffff;
     border: 1px solid #d9e2ec;
@@ -47,6 +53,7 @@ body {
     padding: 24px 24px 28px;
 }
 
+/* カテゴリ見出し */
 .section_title {
     margin: 22px 0 10px 0;
     padding: 10px 14px;
@@ -62,6 +69,7 @@ body {
     margin-top: 0;
 }
 
+/* 1行分の項目（タイトル + コピー用ボタン） */
 .copy_org {
     display: flex;
     align-items: center;
@@ -70,6 +78,7 @@ body {
     padding-left: 28px;
 }
 
+/* 項目名ラベル */
 .item_title {
     display: inline-block;
     width: 180px;
@@ -79,6 +88,7 @@ body {
     letter-spacing: 0.01em;
 }
 
+/* コピー対象値を表示するボタン */
 .copy_btn {
     min-width: 320px;
     max-width: 100%;
@@ -101,6 +111,7 @@ body {
     cursor: pointer;
 }
 
+/* ホバー時の視覚フィードバック */
 .copy_btn:hover {
     background: linear-gradient(to bottom, #ffffff, #e2edf9);
     border-color: #7fa5cf;
@@ -110,6 +121,7 @@ body {
     transform: translateY(-1px);
 }
 
+/* 押下時の視覚フィードバック */
 .copy_btn:active {
     transform: translateY(1px);
     box-shadow:
@@ -117,6 +129,7 @@ body {
         0 3px 8px rgba(51, 65, 85, 0.10);
 }
 
+/* キーボードフォーカス時のアクセシビリティ表示 */
 .copy_btn:focus {
     outline: none;
     border-color: #4a78b8;
@@ -125,6 +138,7 @@ body {
         0 4px 10px rgba(51, 65, 85, 0.10);
 }
 
+/* 上部中央に表示する通知トースト */
 .notification {
     position: fixed;
     top: 20px;
@@ -143,6 +157,7 @@ body {
     transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
 }
 
+/* モバイル表示時のレイアウト調整 */
 @media (max-width: 720px) {
     body {
         padding: 20px 12px;
